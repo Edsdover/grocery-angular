@@ -1,9 +1,8 @@
-h4 Add Grocery
-
 .row
-  .col-xs-4.col-xs-offset-1
+  .col-xs-4.col
     form
       .form-group
+        h4 Add Grocery
         label(for='name') Food Name
         input.form-control#name(type='text', ng-model='food.name')
       .form-group
@@ -22,14 +21,15 @@ h4 Add Grocery
        button.btn.form-control.btn-success(type='submit', ng-click='add(food)', ng-hide='editing') Add Food Item
       .form-group
        button.btn.form-control.btn-danger(type='submit', ng-click='save(food)', ng-show='editing') Update Food Item
-  .col-xs-4.col-xs-offset-1
+  .col-xs-4
     form
       .form-group
         button.webButton.btn.btn-info(ng-click='camOn()', ng-hide='webcamOn') Webcam On
-        button.webButton.btn.btn-danger(ng-click='camOff()', ng-show='webcamOn') Webcam Off
-        #camera
-        button.webButton.btn.btn-primary(ng-click='takeSnapshot()', ng-show='webcamOn') Take Snapshot
         img#photo(ng-src='{{food.photo}}')
+  .col-xs-4
+        button.webButton.btn.btn-danger(ng-click='camOff()', ng-show='webcamOn') Webcam Off
+        button.webButton.btn.btn-primary(ng-click='takeSnapshot()', ng-show='webcamOn') Take Snapshot
+        #camera
 .row
  .col-xs-12
   table.table.table-striped.table-hover
@@ -51,7 +51,7 @@ h4 Add Grocery
      td {{food.priority}}
      td {{food.qty}}
      td {{food.createdAt | date: 'yyyy-MM-dd HH:mm.ss'}}
-     td: input(type='checkbox', ng-model='food.isPicked', ng-click='toggleCheckbox(food)')
-     td: img.img-responsive.img-thumbnail(ng-src='{{food.photo}}')
+     td: input(type='checkbox', ng-model='food.isPicked', ng-click='toggleCheckbox(food)' ng-class="(food.isPicked === true) ? 'picked' : 'notPicked'")
+     td: img.img-responsive.img-thumbnail.photo(ng-src='{{food.photo}}', ng-class='photo')
      td: button.btn.btn-xs.btn-warning(ng-click='editFood(food)') Edit
      td: button.btn.btn-xs.btn-danger(ng-click='destroy(food)') Delete

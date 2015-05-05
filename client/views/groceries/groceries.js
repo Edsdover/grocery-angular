@@ -5,7 +5,7 @@ angular.module('groceryList')
 
   $scope.food = {};
   $scope.editing = false;
-  $scope.class = '';
+  $scope.class = 'notPicked';
 
   Grocery.getFoodList()
   .then(function(response){
@@ -14,7 +14,7 @@ angular.module('groceryList')
 
   $scope.destroy = function(food){
    Grocery.destroy(food)
-   .then(function(response){
+   .then(function(){
     $window._.remove($scope.foods, function(f){
      return f._id === food._id;
     });
@@ -46,8 +46,12 @@ angular.module('groceryList')
 
   $scope.toggleCheckbox = function(food){
    Grocery.save(food)
-   .then(function(response){
-    console.log(response.data);
+   .then(function(){
+    if ($scope.class === 'notPicked'){
+     $scope.class = 'picked';
+    }else{
+     $scope.class = 'notPicked';
+    }
    });
   };
 
