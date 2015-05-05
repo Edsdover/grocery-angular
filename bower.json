@@ -1,7 +1,7 @@
 {
-  "name": "poseidon",
+  "name": "groceryList",
   "version": "0.0.1",
-  "homepage": "https://github.com/coding-house-apr2015/poseidon",
+  "homepage": "https://github.com/coding-house-apr2015/groceryList",
   "authors": [
     "Chyld Medford <chyld.medford@gmail.com>"
   ],
@@ -15,6 +15,7 @@
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.4",
     "angular-ui-router": "~0.2.14",
-    "sweetalert": "~0.5.0"
+    "sweetalert": "~0.5.0",
+    "webcamjs": "*"
   }
 }

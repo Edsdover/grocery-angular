@@ -1,10 +1,18 @@
 'use strict';
 
-angular.module('poseidon')
-.factory('User', function($rootScope){
+angular.module('groceryList')
+.factory('User', function($rootScope, $http, nodeUrl){
 
   function User(){
   }
+
+  User.findOrCreate = function(){
+   return $http.post(nodeUrl + '/users');
+  };
+
+  User.oauth = function(provider){
+    return $rootScope.afAuth.$authWithOAuthPopup(provider);
+  };
 
   User.register = function(user){
     return $rootScope.afAuth.$createUser(user);

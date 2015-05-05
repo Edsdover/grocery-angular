@@ -1,0 +1,30 @@
+h4 Add Grocery
+
+.row
+  .col-xs-4.col-xs-offset-1
+    form
+      .form-group
+        label(for='name') Food Name
+        input.form-control#name(type='text', ng-model='food.name')
+      .form-group
+        label(for='aisle') Food Aisle
+        input.form-control#aisle(type='text', ng-model='food.aisle')
+      .form-group
+        label(for='priority') Priority
+        select.form-control#priority(ng-model='food.priority')
+          option High
+          option Medium
+          option Low
+      .form-group
+        label(for='qty') Item Quantity
+        input.form-control#qty(type='number', name='qty', ng-model='food.qty')
+      .form-group
+       button.btn.form-control.btn-success(type='submit', ng-click='add(food)') Add Food Item
+  .col-xs-4.col-xs-offset-1
+    form
+      .form-group
+        button.webButton.btn.btn-info(ng-click='camOn()', ng-hide='webcamOn') Webcam On
+        button.webButton.btn.btn-danger(ng-click='camOff()', ng-show='webcamOn') Webcam Off
+        #camera
+        button.webButton.btn.btn-primary(ng-click='takeSnapshot()', ng-show='webcamOn') Take Snapshot
+        img#photo(ng-src='{{food.photo}}')

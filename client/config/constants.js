@@ -1,4 +1,5 @@
 'use strict';
 
-angular.module('poseidon')
-.constant('firebaseUrl', 'https://ENTER-YOUR-FB-URL.firebaseio.com/');
+angular.module('groceryList')
+.constant('firebaseUrl', 'https://facebooknode.firebaseio.com/')
+.constant('nodeUrl', 'http://localhost:8000');
