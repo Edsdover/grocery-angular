@@ -49,7 +49,7 @@ h4 Add Grocery
      td {{food.priority}}
      td {{food.qty}}
      td {{food.createdAt | date: 'yyyy-MM-dd HH:mm.ss'}}
-     td: input(type='checkbox', value='{{food.isPicked}}', ng-click='toggleCheckbox(food)') 
-     td: img.img-responsive.img-thumbnail(ng-src='{{food.photo}}') 
-     td: button.btn.btn-xs.btn-warning(ng-click='edit(food)') Edit
+     td: input(type='checkbox', ng-model='food.isPicked', ng-click='toggleCheckbox(food)')
+     td: img.img-responsive.img-thumbnail(ng-src='{{food.photo}}')
+     td: button.btn.btn-xs.btn-warning(ng-click='editFood(food)') Edit
      td: button.btn.btn-xs.btn-danger(ng-click='destroy(food)') Delete

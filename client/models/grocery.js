@@ -15,7 +15,7 @@ angular.module('groceryList')
   };
 
   Grocery.toggle = function(food){
-   return $http.put(nodeUrl + '/foods', food);
+   return $http.put(nodeUrl + '/foods/' + food._id, food);
   };
 
   Grocery.destroy = function(food){

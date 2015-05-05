@@ -15,7 +15,6 @@ angular.module('groceryList')
     $window._.remove($scope.foods, function(f){
      return f._id === food._id;
     });
-    console.info('response: ', response);
    });
   };
 
@@ -29,14 +28,24 @@ angular.module('groceryList')
     });
   };
 
+  $scope.editFood = function(food){
+   $scope.food = food;
+    Grocery.getFoodList()
+    .then(function(foodList){
+     $scope.foods = foodList.data.foods;
+    });
+ };
+
   $scope.toggleCheckbox = function(food){
-   // delete food.data.userId;
-   // delete food.data.__v;
-   // delete food.data.createdAt;
-   console.info('food: ', food);
-   Grocery.toggle(food);
+   Grocery.toggle(food)
+   .then(function(response){
+    console.log('response.data: ', response.data);
+    // var foodItem = $window._.find($scope.foods, function(f){
+    //  return f._id === response.data._id;
+    // });
+   });
   };
-  //
+
   $scope.camOn = function(){
     $scope.webcamOn = true;
     $window.Webcam.set({
