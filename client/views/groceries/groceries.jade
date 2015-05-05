@@ -28,3 +28,28 @@ h4 Add Grocery
         #camera
         button.webButton.btn.btn-primary(ng-click='takeSnapshot()', ng-show='webcamOn') Take Snapshot
         img#photo(ng-src='{{food.photo}}')
+.row
+ .col-xs-12
+  table.table.table-striped.table-hover
+   thead
+    tr
+     th Name
+     th Aisle
+     th Priority
+     th Quantity
+     th Date Created
+     th Is Picked Up
+     th Photo
+     th Edit
+     th Delete
+   tbody
+    tr(ng-repeat='food in foods')
+     td {{food.name}}
+     td {{food.aisle}}
+     td {{food.priority}}
+     td {{food.qty}}
+     td {{food.createdAt | date: 'yyyy-MM-dd HH:mm.ss'}}
+     td: input(type='checkbox', value='{{food.isPicked}}', ng-click='toggleCheckbox(food)') 
+     td: img.img-responsive.img-thumbnail(ng-src='{{food.photo}}') 
+     td: button.btn.btn-xs.btn-warning(ng-click='edit(food)') Edit
+     td: button.btn.btn-xs.btn-danger(ng-click='destroy(food)') Delete

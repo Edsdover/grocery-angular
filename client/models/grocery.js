@@ -6,9 +6,20 @@ angular.module('groceryList')
   function Grocery(){
   }
 
+  Grocery.getFoodList = function(){
+   return $http.get(nodeUrl + '/foods');
+  };
+
   Grocery.add = function(food){
    return $http.post(nodeUrl + '/foods', food);
   };
 
+  Grocery.toggle = function(food){
+   return $http.put(nodeUrl + '/foods', food);
+  };
+
+  Grocery.destroy = function(food){
+   return $http.delete(nodeUrl + '/foods/' + food._id);
+  };
   return Grocery;
 });

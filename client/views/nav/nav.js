@@ -10,7 +10,7 @@ angular.module('groceryList')
       $http.defaults.headers.common.Authorization = 'Bearer ' + data.token;
       User.findOrCreate()
       .then(function(){
-       $state.go('home');
+       $state.go('grocery');
       })
       .catch(function(){
        $window.swal({title: 'Registration Error', text: 'There was a problem with your registration. Please try again.', type: 'error'});
@@ -20,12 +20,12 @@ angular.module('groceryList')
       $rootScope.displayName = null;
       $http.defaults.headers.common.Authorization = null;
     }
-
     $state.go('home');
   });
 
   $scope.logout = function(){
     User.logout();
+    $state.go('home');
   };
   function getDisplayName(data){
   switch(data.provider){
