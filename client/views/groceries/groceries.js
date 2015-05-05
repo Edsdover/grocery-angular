@@ -2,7 +2,10 @@
 
 angular.module('groceryList')
 .controller('GroceryCtrl', function($window, $scope, Grocery){
+
   $scope.food = {};
+  $scope.editing = false;
+  $scope.class = '';
 
   Grocery.getFoodList()
   .then(function(response){
@@ -22,6 +25,10 @@ angular.module('groceryList')
     Grocery.add(food)
     .then(function(response){
       $scope.foods.push(response.data);
+      $scope.food = {};
+      $scope.food.photo = {};
+      $window.Webcam.reset();
+
     })
     .catch(function(){
       $window.swal({title: 'Error', text: 'There was a problem adding your food item. Please try again.', type: 'error'});
@@ -29,20 +36,32 @@ angular.module('groceryList')
   };
 
   $scope.editFood = function(food){
+   $scope.editing = true;
    $scope.food = food;
+   Grocery.getFoodList()
+   .then(function(foodList){
+    $scope.foods = foodList.data.foods;
+   });
+  };
+
+  $scope.toggleCheckbox = function(food){
+   Grocery.save(food)
+   .then(function(response){
+    console.log(response.data);
+   });
+  };
+
+  $scope.save = function(food){
+   Grocery.save(food)
+   .then(function(){
+    $scope.food = {};
+    $scope.food.photo = {};
+    $window.Webcam.reset();
+    $scope.editing = false;
     Grocery.getFoodList()
     .then(function(foodList){
      $scope.foods = foodList.data.foods;
     });
- };
-
-  $scope.toggleCheckbox = function(food){
-   Grocery.toggle(food)
-   .then(function(response){
-    console.log('response.data: ', response.data);
-    // var foodItem = $window._.find($scope.foods, function(f){
-    //  return f._id === response.data._id;
-    // });
    });
   };
 
@@ -62,6 +81,7 @@ angular.module('groceryList')
   $scope.takeSnapshot = function(){
     $window.Webcam.snap(function(dataUri){
       $scope.food.photo = dataUri;
+      console.log(dataUri);
     });
   };
 

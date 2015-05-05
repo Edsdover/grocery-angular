@@ -14,12 +14,16 @@ angular.module('groceryList')
    return $http.post(nodeUrl + '/foods', food);
   };
 
-  Grocery.toggle = function(food){
+  Grocery.save = function(food){
    return $http.put(nodeUrl + '/foods/' + food._id, food);
   };
+  // Grocery.toggle = function(food){
+  //  return $http.put(nodeUrl + '/foods/' + food._id, food);
+  // };
 
   Grocery.destroy = function(food){
    return $http.delete(nodeUrl + '/foods/' + food._id);
   };
+
   return Grocery;
 });
